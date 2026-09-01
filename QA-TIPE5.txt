@@ -1,0 +1,100 @@
+QA TIPE 5 — LULUS
+
+- Parser URL: youtu.be, watch?v=, Shorts, embed
+- Resolver YouTube otomatis: lulus dengan endpoint tiruan
+- Pemilih menit/detik dan durasi dinamis 5–60 detik (default 18): lulus
+- Perspective warp layar laptop dan caption: lulus
+- Drag caption via pointer/touch: lulus
+- Ekspor: jumlah frame dinamis pada 24 fps; default 432 frame, 1080 x 1920
+- Audio: timestamp dipotong, dimulai dari 0, dan gain 0–100% diterapkan sebelum AAC
+- Container: MP4 dengan validasi avc1 + mp4a
+- Share: hanya file video/mp4, tanpa teks tambahan
+- PWA offline Tipe 5: lulus
+- Uji viewport: 390 x 844 dan desktop
+- JavaScript/browser errors: 0
+
+QA V16 — PIN SUDUT 3D
+- 4 pin sudut tersedia: kiri atas, kanan atas, kanan bawah, kiri bawah.
+- Pin bisa diseret tanpa video/resolver aktif.
+- Perubahan langsung dipakai oleh renderer WebGL dan transform preview YouTube.
+- Posisi pin tersimpan di localStorage dan dimuat kembali saat aplikasi dibuka.
+- Bentuk silang/tumpang tindih ditolak agar perspektif tidak rusak.
+- Reset otomatis mengembalikan posisi bawaan foto laptop.
+- Overlay pin hanya DOM preview dan tidak ikut dirender ke MP4.
+- YouTube embed memakai origin saat dijalankan lewat HTTP/HTTPS; mode file lokal diarahkan ke fallback.
+- Unit test: toggle, drag/update, validasi, persistence, reset — lulus.
+
+QA V17 — ORIENTASI VIDEO
+- Pola uji merah TOP / biru BOTTOM tampil tegak setelah perspective warp: lulus.
+- Sampel piksel bagian atas berasal dari setengah atas sumber, dan bagian bawah dari setengah bawah: lulus.
+- Jalur preview dan ekspor memakai fungsi compose/renderer yang sama: lulus.
+- Cache PWA diperbarui agar tipe5.js lama tidak digunakan kembali: lulus.
+
+QA V18 — FULL HD DAN ANTI-TAINT
+- Output Tipe 5: 1080 x 1920, 24 fps, video 8 Mbps, audio AAC 192 kbps.
+- Kanvas preview dan kanvas ekspor dipisahkan sepenuhnya.
+- Ekspor tidak memakai elemen video DOM pada fallback frame; frame bersih terakhir diulang bila decoder mengembalikan lebih sedikit timestamp.
+- Profil H.264 dinaikkan ke AVC level 4.0 untuk resolusi Full HD.
+- Nama file hasil memuat penanda 1080p.
+- Cache PWA V18 memaksa tipe5.js terbaru dimuat.
+
+QA V19 — FILE LOKAL DAN RESOLVER YOUTUBE
+- Foto laptop inline dapat dirender dari file:// tanpa mencemari kanvas: lulus.
+- Kanvas ekspor 1080 x 1920 tetap dapat dibaca dengan toDataURL/getImageData dari file://: lulus.
+- String data foto dibuang dari window setelah gambar selesai didekode: lulus.
+- Resolver mencoba 15 endpoint Piped dalam kelompok paralel: lulus dengan endpoint tiruan.
+- Kegagalan seluruh resolver membuka panel file cadangan otomatis.
+- Cache PWA V19 memuat aset foto inline terbaru.
+
+
+QA V20 — TEKS DATAR DAN TEMPLATE
+- Tulisan digambar pada kanvas akhir setelah lapisan video perspektif: lulus.
+- Unggah dan penerapan font TTF: lulus.
+- Unggah foto laptop PNG dan kanvas ekspor tetap origin-clean: lulus.
+- Penyimpanan font, foto, nilai slider, dan posisi pin melalui localStorage + IndexedDB: lulus setelah muat ulang.
+- Penghapusan/reset font dan foto tersedia.
+- Kanvas ekspor tetap 1080 x 1920: lulus.
+- Resolver YouTube 15 sumber: lulus dengan respons tiruan; ketersediaan sumber publik nyata berada di luar kendali aplikasi.
+- Penanda V20 dan cache-busting aset aktif.
+
+
+QA V21 — YOUTUBE + GOOGLE DRIVE
+- Parser link YouTube youtu.be dengan parameter si: lulus.
+- Parser link Google Drive /file/d/.../view: lulus.
+- Pembentukan dua URL unduhan Drive tanpa karakter rusak: lulus.
+- Saat sumber YouTube otomatis gagal, preview tetap aktif dan panel Drive disorot: lulus.
+- Link Drive dengan respons video + CORS dapat dimuat, durasi 21 detik terbaca, dan tombol ekspor aktif: lulus dengan server uji terkontrol.
+- Pemilih file Google Drive/HP memuat WebM 21 detik dan mengaktifkan ekspor: lulus.
+- Kanvas hasil tetap origin-clean pada 1080 x 1920: lulus.
+- Cache-busting dan cache PWA V21 aktif.
+
+
+QA V22 — DURASI, VOLUME, TEMPLATE, FONT, TEKS 3D, DAN HP
+- Default durasi 18 detik dan 432 frame pada 24 fps: lulus.
+- Perubahan durasi ke 22 detik menghasilkan 528 frame serta memperbarui label, rentang mulai, dan status ekspor: lulus.
+- Durasi yang melebihi panjang video menonaktifkan ekspor: lulus.
+- Volume preview 37% tersambung ke elemen video: lulus.
+- Sampel audio dua kanal diskalakan 40% dalam format f32-planar sebelum encoder AAC: lulus.
+- Font Arial Bold dan Impact dapat dipilih dan status aksesibilitas tombol ikut berubah: lulus.
+- Mode tulisan Datar dan 3D ikut layar menghasilkan komposisi berbeda: lulus.
+- Kanvas kedua mode tetap origin-clean pada 1080 x 1920: lulus.
+- Template menyimpan serta menerapkan ulang durasi, volume, posisi teks, font Impact, dan mode 3D melalui tombol Gunakan template: lulus.
+- Pemilih file Google Drive/HP, parser YouTube, dan parser Drive tidak mengalami regresi: lulus.
+- Viewport HP 390 x 844 tidak memiliki overflow horizontal; slider dan tombol template tetap dapat disentuh: lulus.
+- Uji browser otomatis V22: 36 pemeriksaan lulus, 0 console error, 0 page error.
+- Cache-busting dan cache PWA V22 aktif.
+
+
+QA V23 — ANTI-GREEN DAN ANTI-LAG
+- Renderer ekspor memanggil sinkronisasi GPU sebelum kanvas WebGL dibaca: lulus.
+- Frame komposisi 1080 x 1920 disalin menjadi VideoSample RGBA di memori CPU: lulus.
+- VideoSample CPU memiliki timestamp 1/24 detik yang konstan: lulus.
+- Detektor membedakan frame hijau penuh dari frame merah normal: lulus.
+- Setelah satu frame bersih, frame hijau berikutnya diganti dengan frame bersih terakhir: lulus.
+- Pemilihan encoder mencoba software, no-preference, lalu hardware: lulus dengan encoder tiruan.
+- Jalur VideoSampleSource mentah menghasilkan WebM uji 24/1 fps dengan 24 paket untuk 24 frame: lulus.
+- Keyframe interval 1 detik dan latency realtime aktif pada encoder H.264.
+- Jumlah paket hasil divalidasi sebelum file diunduh.
+- Uji khusus V23: 12 pemeriksaan lulus, 0 console error, 0 page error.
+- Uji regresi seluruh fitur V22 pada V23: 36 pemeriksaan lulus, 0 console error, 0 page error.
+- Cache-busting dan cache PWA V23 aktif.

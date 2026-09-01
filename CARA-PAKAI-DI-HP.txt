@@ -1,0 +1,96 @@
+CARA MEMAKAI CAPTION STUDIO DI HP
+================================
+
+A. Agar bisa dibuka seperti aplikasi (disarankan)
+1. Unggah seluruh folder caption-foto-hd ke hosting HTTPS. Bisa memakai Netlify Drop, GitHub Pages, Vercel, atau hosting sendiri.
+2. Buka alamat website dari HP.
+3. Android / Chrome: tekan tombol "Pasang di HP" atau menu ⋮ > Instal aplikasi / Tambahkan ke layar utama.
+4. iPhone / Safari: tekan Bagikan > Tambahkan ke Layar Utama > Tambah.
+5. Setelah terpasang, buka dari ikon Caption Studio pada layar utama.
+
+B. Pemakaian mode Video 9:16 di HP
+1. Tempel link TikTok atau pilih video dari Galeri / File.
+2. Masukkan quotes.
+3. Preview otomatis muncul setelah bagian quotes agar mudah dilihat saat mengatur teks.
+4. Pilih template teks, warna, font, posisi, dan outline.
+5. Gunakan tombol cepat di bawah layar: Preview atau Ekspor.
+6. Setelah ekspor selesai, tekan Bagikan untuk menyimpan ke galeri atau mengirim ke aplikasi lain (jika didukung HP).
+
+CATATAN
+- Gunakan Chrome Android atau Safari iPhone versi terbaru.
+- Impor link TikTok memerlukan internet dan bergantung pada sumber video yang tersedia.
+- Gunakan hanya video milik sendiri atau yang sudah mendapat izin.
+- File lokal tetap diproses di perangkat. Mode video membutuhkan RAM yang cukup; tutup aplikasi lain bila video panjang.
+- PWA / mode aplikasi tidak aktif jika index.html dibuka langsung dari file ZIP. Website harus diakses lewat alamat HTTPS.
+
+
+KHUSUS REALME 5 PRO / HP LAMA
+1. Buka mode Video 9:16.
+2. Pada Mode hasil video, pilih "IG/TikTok MP4 · 720p · 24 fps".
+3. Mode ini menyusun tepat 24 frame per detik (bukan merekam preview real-time), lalu menyimpan MP4 H.264 + AAC.
+4. Tunggu sampai 100% dan jangan pindah aplikasi saat proses berlangsung.
+5. Pakai "Full HD" hanya jika butuh 1080p dan HP pemutar cukup kuat.
+
+Kenapa ini lebih lancar dan bisa diupload: hasil lama dapat berisi VP9/Opus atau WebM yang hanya diberi nama .mp4, serta frame rate turun menjadi sekitar 14–16 fps walaupun diminta 30 fps. Mode baru memakai 720 × 1280, 24 fps konstan, H.264 Baseline, AAC-LC, dan container MP4 asli agar decoder realme 5 Pro, Instagram, dan TikTok mengenalinya dengan benar.
+
+Setelah proses selesai, tekan "Bagikan MP4 ke IG/TikTok" lalu pilih Instagram atau TikTok. Jika encoder MP4 belum tersedia, perbarui Google Chrome melalui Play Store dan buka ulang aplikasi.
+
+TIPE 5 DI HP
+1. Buka tab Tipe 5.
+2. Tempel link YouTube dan tekan Tampilkan.
+3. Isi menit/detik awal. Durasi awal 18 detik; geser Durasi potongan jika ingin 5–60 detik.
+4. Atur volume 0–100%, font Arial/Impact, lalu pilih tulisan Datar atau 3D ikut layar.
+5. Seret teks langsung pada preview bila perlu. Pada mode 3D, posisi sentuhan dipetakan ke layar laptop.
+6. Tekan Simpan template. Untuk memakai pengaturan itu lagi, tekan Gunakan template.
+7. Tekan Ekspor pada dock bawah; pada durasi 18 detik aplikasi menyusun 432 frame Full HD.
+8. Jangan berpindah aplikasi saat ekspor. Layar dijaga tetap menyala bila Wake Lock didukung.
+9. File MP4 1080 x 1920 bisa langsung dibagikan lewat tombol Bagikan.
+
+Catatan V19: foto laptop sekarang dimuat dari data internal yang aman, sehingga ekspor tidak lagi gagal karena kanvas tercemar saat tipe5.html dibuka langsung dari folder. Aplikasi mencoba 15 sumber YouTube; jika semuanya sedang dibatasi, panel file cadangan akan terbuka otomatis. Untuk memastikan versi baru terpakai pada PWA lama, muat ulang halaman satu kali setelah memasang pembaruan.
+
+Jika link hanya menampilkan preview tetapi tombol ekspor belum aktif, pilih file video cadangan. Chrome Android terbaru direkomendasikan. Resolver YouTube memerlukan internet dan hanya untuk media yang boleh digunakan.
+
+PIN SUDUT 3D DI HP
+1. Tekan Aktifkan 4 pin sudut.
+2. Sentuh dan seret lingkaran 1–4 ke sudut layar laptop.
+3. Lepaskan pin; posisi langsung tersimpan.
+4. Tekan Selesai mengatur pin. Pin tidak ikut masuk ke video hasil.
+5. Jika link YouTube gagal, pilih file cadangan lalu tetap gunakan posisi pin yang sama.
+
+
+FITUR BARU V20
+1. Pastikan tulisan "YOUTUBE · V20" terlihat. Jika tidak, hapus PWA/cache versi lama dan buka ulang folder/website V20.
+2. Pada Atur tulisan, tekan Ganti font untuk memilih TTF/OTF/WOFF/WOFF2.
+3. Tekan Ganti foto untuk memilih foto laptop baru dari galeri. Aktifkan/geser empat pin agar video pas dengan layar pada foto baru.
+4. Tekan Simpan template. Font, foto, ukuran dan posisi tulisan, serta posisi pin akan dimuat otomatis saat aplikasi dibuka lagi pada perangkat dan browser yang sama.
+5. Tulisan V20 selalu datar; hanya videonya yang mengikuti perspektif layar.
+6. Jika link YouTube hanya menampilkan preview tetapi tidak menyiapkan ekspor, pilih file video milikmu melalui panel cadangan. Pembatasan ini berasal dari YouTube dan tidak dapat dijamin oleh aplikasi browser statis.
+
+
+CARA MEMAKAI GOOGLE DRIVE — V23
+1. Pastikan label “YOUTUBE + DRIVE · V23” terlihat. Jika masih V20/V21/V22, hapus cache/PWA lama lalu pasang ulang seluruh folder V23.
+2. Untuk preview, tempel link YouTube lalu tekan Tampilkan.
+3. Untuk sumber ekspor, buka video di Google Drive, tekan Bagikan, lalu ubah akses menjadi “Siapa saja yang memiliki link”.
+4. Tempel link pada kolom Link Google Drive dan tekan Gunakan Drive.
+5. Jika link diblokir browser, tekan “Pilih dari Google Drive / HP”. Pada Android, pilih Drive dari menu dokumen lalu pilih videonya. Cara ini paling stabil.
+6. Setelah status hijau dan tombol ekspor aktif, pilih waktu mulai lalu tekan Proses & unduh.
+
+Catatan: YouTube sengaja membatasi pengambilan file langsung dari browser. V23 mempertahankan preview YouTube, lalu menyediakan Google Drive sebagai sumber ekspor yang dapat dikendalikan pengguna. Chrome Android terbaru paling direkomendasikan untuk ekspor H.264 Full HD.
+
+
+FITUR BARU V22 DI HP
+1. Potongan video default 18 detik dan dapat diatur 5–60 detik.
+2. Volume preview dan MP4 dapat diatur dari 0% sampai 100%.
+3. Pilih Arial atau Impact, atau unggah font sendiri.
+4. Pilih tulisan Datar atau 3D ikut layar laptop.
+5. Tombol Gunakan template menerapkan ulang template yang sudah disimpan.
+6. Pilih dari Google Drive / HP membuka pemilih dokumen Android; ini adalah jalur ekspor paling stabil bila YouTube atau link Drive dibatasi.
+
+
+PERBAIKAN V23 — HASIL HIJAU / TERSENDAT
+1. Ganti seluruh folder V22 dengan V23; jangan hanya mengganti tipe5.html.
+2. Hapus PWA/cache lama, buka lagi, lalu pastikan label V23 terlihat.
+3. Pilih video dari Google Drive / HP untuk jalur paling stabil.
+4. Saat ekspor, jangan matikan layar atau berpindah aplikasi. V23 memproses frame melalui memori CPU agar tidak menjadi hijau, sehingga proses bisa sedikit lebih lama.
+5. Hasil tetap MP4 1080 x 1920 pada 24 fps konstan dengan keyframe setiap 1 detik.
+6. Jika muncul pesan decoder berhenti, ubah video sumber menjadi MP4 H.264 + AAC lalu pilih file hasil konversi tersebut.

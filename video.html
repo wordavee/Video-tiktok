@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f4f5f6" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="description" content="Buat satu video quotes 9:16 lengkap dengan caption, hashtag, dan rekomendasi lagu." />
+  <title>Video Quotes 9:16 — Caption Foto HD</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/app-icon-180.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="video.css" />
+  <script src="pwa.js" defer></script>
+  <script src="vendor/mediabunny.min.js" defer></script>
+  <script src="video.js" defer></script>
+</head>
+<body class="video-page">
+  <a class="skip-link" href="#videoWorkspace">Lewati ke workspace</a>
+
+  <header class="topbar">
+    <div class="brand-wrap">
+      <div class="brand-mark" aria-hidden="true">Aa</div>
+      <div>
+        <p class="eyebrow">CONTENT STUDIO</p>
+        <h1>Caption Foto HD</h1>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <nav class="mode-nav" aria-label="Pilih generator">
+        <a href="index.html">Foto batch</a>
+        <a href="video.html" class="active" aria-current="page">Video 9:16</a>
+        <a href="tipe3.html">Tipe 3</a>
+        <a href="tipe1.html">Tipe 1</a>
+              <a href="tipe5.html">Tipe 5</a>
+      </nav>
+      <div class="privacy-badge" title="Semua file diproses di browser, tanpa diunggah ke server">
+        <span class="privacy-dot" aria-hidden="true"></span>
+        Lokal & privat
+      </div>
+    </div>
+  </header>
+
+  <main id="videoWorkspace" class="workspace video-workspace">
+    <section class="intro video-intro" aria-labelledby="video-intro-title">
+      <div>
+        <p class="kicker">SATU VIDEO · SATU QUOTES · SIAP POSTING</p>
+        <h2 id="video-intro-title">Buat video quotes vertikal lengkap dengan ide posting.</h2>
+        <p>Tempel link TikTok atau unggah satu video, tambahkan quotes, lalu dapatkan video 9:16 beserta ide posting.</p>
+      </div>
+      <ol class="stepper" aria-label="Alur kerja">
+        <li class="active"><span>1</span>Video</li>
+        <li><span>2</span>Quotes</li>
+        <li><span>3</span>Konten</li>
+        <li><span>4</span>Unduh</li>
+      </ol>
+    </section>
+
+    <div class="app-grid video-grid">
+      <div class="controls" aria-label="Pengaturan video quotes">
+        <section class="panel" aria-labelledby="upload-video-title">
+          <div class="panel-heading">
+            <div class="step-number">01</div>
+            <div>
+              <h3 id="upload-video-title">Masukkan satu video</h3>
+              <p>Tempel link TikTok atau unggah file dari perangkat.</p>
+            </div>
+            <span class="count-badge">1 video</span>
+          </div>
+
+          <div class="tiktok-import-card">
+            <div class="tiktok-import-heading">
+              <span class="tiktok-mark" aria-hidden="true">♪</span>
+              <span><strong>Ambil dari link TikTok</strong><small>Sumber tanpa watermark akan dipilih jika tersedia.</small></span>
+            </div>
+            <label class="tiktok-url-label" for="tiktokUrl">LINK VIDEO TIKTOK</label>
+            <div class="tiktok-url-row">
+              <input id="tiktokUrl" type="url" inputmode="url" autocomplete="off" placeholder="https://www.tiktok.com/@akun/video/…" />
+              <button id="importTikTokButton" class="tiktok-import-button" type="button">Ambil video</button>
+            </div>
+            <div id="tiktokImportStatus" class="tiktok-import-status" role="status" aria-live="polite" hidden></div>
+            <p class="tiktok-usage-note">Internet diperlukan. Gunakan hanya video milik sendiri atau yang sudah diizinkan pemiliknya.</p>
+          </div>
+
+          <div class="video-source-divider"><span>atau unggah file</span></div>
+
+          <label id="videoDropzone" class="dropzone" for="videoInput">
+            <input id="videoInput" type="file" accept="video/mp4,video/webm,video/quicktime" />
+            <span class="drop-icon video-upload-icon" aria-hidden="true">▶</span>
+            <span class="drop-copy">
+              <strong>Pilih file video</strong>
+              <small>MP4, WebM, MOV · maksimal 3 menit</small>
+            </span>
+          </label>
+
+          <div id="videoStatus" class="file-status" hidden>
+            <span class="file-symbol video-symbol" aria-hidden="true">V</span>
+            <span class="file-meta">
+              <strong id="videoFileName">—</strong>
+              <small id="videoFileInfo">—</small>
+            </span>
+            <button id="clearVideo" class="icon-button" type="button" aria-label="Hapus video">×</button>
+          </div>
+          <video id="sourceVideo" playsinline preload="metadata" hidden></video>
+
+          <div class="format-lock">
+            <span aria-hidden="true">▯</span>
+            <div><strong id="outputResolutionTitle">Output 1080 × 1920 px</strong><small id="outputResolutionHint">Ukuran Reels Instagram dan TikTok · rasio 9:16</small></div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="quote-title">
+          <div class="panel-heading">
+            <div class="step-number">02</div>
+            <div>
+              <h3 id="quote-title">Masukkan quotes</h3>
+              <p>Satu quotes untuk satu video.</p>
+            </div>
+            <span id="quoteCounter" class="count-badge">72 / 300</span>
+          </div>
+
+          <label class="quote-field" for="quoteInput">
+            <span>TEKS DI VIDEO</span>
+            <textarea id="quoteInput" rows="4" maxlength="300">single ori kak, bukan single yang just trend atau hts nya dimana mana</textarea>
+          </label>
+
+          <div class="field-row">
+            <label for="themeSelect">Tema quotes</label>
+            <select id="themeSelect">
+              <option value="auto">Deteksi otomatis</option>
+              <option value="single">Single & percaya diri</option>
+              <option value="love">Cinta</option>
+              <option value="heartbreak">Galau & patah hati</option>
+              <option value="healing">Healing</option>
+              <option value="motivation">Motivasi</option>
+              <option value="friendship">Persahabatan</option>
+              <option value="religious">Religi</option>
+              <option value="funny">Santai & lucu</option>
+              <option value="life">Kehidupan</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="video-style-title">
+          <div class="panel-heading">
+            <div class="step-number">03</div>
+            <div>
+              <h3 id="video-style-title">Atur teks video</h3>
+              <p>Tarik langsung pada preview atau gunakan slider.</p>
+            </div>
+            <button id="resetVideoStyle" class="text-button" type="button">Reset</button>
+          </div>
+
+          <div class="font-card">
+            <div>
+              <span class="font-preview">Aa</span>
+              <span>
+                <strong id="videoFontLabel">Classic Bold</strong>
+                <small>Putih atau kuning dengan outline hitam</small>
+              </span>
+            </div>
+            <label class="upload-font" for="videoFontInput">
+              Ganti font
+              <input id="videoFontInput" type="file" accept=".ttf,.otf,.woff,.woff2,font/ttf,font/otf" />
+            </label>
+          </div>
+
+          <label class="video-color-field" for="videoTextColor">
+            <span><strong>Warna tulisan</strong><small>Pilih putih atau kuning sesuai videomu.</small></span>
+            <span class="video-color-control">
+              <span id="videoTextColorSwatch" class="video-color-swatch" aria-hidden="true"></span>
+              <select id="videoTextColor">
+                <option value="#ffffff">Putih · #FFFFFF</option>
+                <option value="#e7c549">Kuning · #E7C549</option>
+              </select>
+            </span>
+          </label>
+
+          <div class="text-layout-panel">
+            <div class="text-layout-heading">
+              <span><strong>Template susunan teks</strong><small>Pilih ukuran dan lebar teks siap pakai.</small></span>
+              <span class="layout-count-badge">5 pilihan</span>
+            </div>
+            <div class="text-layout-grid" role="group" aria-label="Template susunan teks">
+              <button class="text-layout-option active" type="button" data-layout-preset="classic" aria-pressed="true">
+                <span class="layout-thumb layout-thumb-classic" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span><strong>Classic</strong><small>Lebar & tebal</small></span>
+              </button>
+              <button class="text-layout-option" type="button" data-layout-preset="columnLarge" aria-pressed="false">
+                <span class="layout-thumb layout-thumb-large" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                <span><strong>Kolom besar</strong><small>Seperti gambar 3</small></span>
+              </button>
+              <button class="text-layout-option" type="button" data-layout-preset="columnMedium" aria-pressed="false">
+                <span class="layout-thumb layout-thumb-medium" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                <span><strong>Kolom sedang</strong><small>Seperti gambar 4</small></span>
+              </button>
+              <button class="text-layout-option" type="button" data-layout-preset="minimal" aria-pressed="false">
+                <span class="layout-thumb layout-thumb-minimal" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span><strong>Minimal</strong><small>Rapi & ringan</small></span>
+              </button>
+              <button class="text-layout-option" type="button" data-layout-preset="boldCenter" aria-pressed="false">
+                <span class="layout-thumb layout-thumb-bold-center" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                <span><strong>Bold tengah</strong><small>44 px · Black</small></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="font-template-bar">
+            <div>
+              <strong>Template font video</strong>
+              <small id="fontTemplateStatus">Belum ada template tersimpan.</small>
+            </div>
+            <div class="font-template-actions">
+              <button id="saveFontTemplate" class="template-save-button" type="button">Simpan template</button>
+              <button id="deleteFontTemplate" class="text-button" type="button" hidden>Hapus</button>
+            </div>
+          </div>
+
+          <div class="slider-grid video-slider-grid">
+            <label class="slider-field" for="videoFontSize">
+              <span>Ukuran teks <output id="videoFontSizeValue">76 px</output></span>
+              <input id="videoFontSize" type="range" min="42" max="120" value="76" />
+            </label>
+            <label class="slider-field" for="videoFontWeight">
+              <span>Ketebalan font <output id="videoFontWeightValue">700 · Bold</output></span>
+              <input id="videoFontWeight" type="range" min="100" max="900" step="100" value="700" />
+            </label>
+            <label class="slider-field" for="videoPositionX">
+              <span>Posisi kiri–kanan <output id="videoPositionXValue">50%</output></span>
+              <input id="videoPositionX" type="range" min="15" max="85" value="50" />
+            </label>
+            <label class="slider-field" for="videoPositionY">
+              <span>Posisi atas–bawah <output id="videoPositionYValue">52%</output></span>
+              <input id="videoPositionY" type="range" min="8" max="92" value="52" />
+            </label>
+            <label class="slider-field" for="videoTextWidth">
+              <span>Lebar area teks <output id="videoTextWidthValue">88%</output></span>
+              <input id="videoTextWidth" type="range" min="20" max="94" value="88" />
+            </label>
+            <label class="toggle-field outline-toggle" for="videoOutlineEnabled">
+              <span><strong>Outline teks</strong><small>Nyalakan atau matikan garis tepi hitam.</small></span>
+              <input id="videoOutlineEnabled" type="checkbox" checked />
+              <span class="toggle-ui" aria-hidden="true"></span>
+            </label>
+            <label class="slider-field outline-width-field" for="videoStrokeWidth">
+              <span>Ketebalan outline <output id="videoStrokeWidthValue">12 px</output></span>
+              <input id="videoStrokeWidth" type="range" min="4" max="20" value="12" />
+            </label>
+            <label class="slider-field" for="videoLineHeight">
+              <span>Jarak antarbaris <output id="videoLineHeightValue">1.00×</output></span>
+              <input id="videoLineHeight" type="range" min="88" max="175" value="100" />
+            </label>
+            <label class="toggle-field" for="videoAutoFit">
+              <span><strong>Sesuaikan otomatis</strong><small>Menjaga quotes tetap berada di dalam video.</small></span>
+              <input id="videoAutoFit" type="checkbox" checked />
+              <span class="toggle-ui" aria-hidden="true"></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="panel social-panel" aria-labelledby="social-title">
+          <div class="panel-heading social-heading">
+            <div class="step-number">04</div>
+            <div>
+              <h3 id="social-title">Ide posting otomatis</h3>
+              <p>Caption, hashtag, dan request lagu mengikuti tema.</p>
+            </div>
+            <button id="regenerateSocial" class="text-button" type="button">Generate ulang</button>
+          </div>
+
+          <div class="detected-theme"><span>TEMA TERDETEKSI</span><strong id="detectedTheme">Single & percaya diri</strong></div>
+
+          <label class="social-field" for="socialCaption">
+            <span>Caption singkat</span>
+            <textarea id="socialCaption" rows="2"></textarea>
+          </label>
+          <label class="social-field" for="hashtagText">
+            <span>Hashtag relevan</span>
+            <textarea id="hashtagText" rows="3"></textarea>
+          </label>
+
+          <div class="songs-header">
+            <div><span>REQUEST LAGU IG/TIKTOK</span><small>Cari judul berikut di pustaka musik aplikasi.</small></div>
+          </div>
+          <div id="songList" class="song-list"></div>
+
+          <div class="social-actions">
+            <button id="copySocial" class="secondary-button compact-button" type="button">Salin semuanya</button>
+            <button id="downloadSocial" class="secondary-button compact-button" type="button">Unduh teks</button>
+          </div>
+        </section>
+
+        <section class="export-panel video-export" aria-labelledby="video-export-title">
+          <div>
+            <p class="export-label">SIAP DIEKSPOR</p>
+            <h3 id="video-export-title">1 video · 9:16 HD</h3>
+            <p id="videoExportHint">Unggah video untuk mengaktifkan ekspor.</p>
+            <label class="export-profile-control" for="videoExportProfile">
+              <span>Mode hasil video</span>
+              <select id="videoExportProfile">
+                <option value="compatible">IG/TikTok MP4 · 720p · 24 fps</option>
+                <option value="fullHd">Full HD · 1080p · 30 fps</option>
+              </select>
+              <small id="videoExportProfileHelp">MP4 H.264 + AAC disarankan untuk realme 5 Pro.</small>
+            </label>
+          </div>
+          <div class="video-export-actions">
+            <button id="generateVideoButton" class="primary-button" type="button" disabled>
+              <span>Proses & unduh video</span><span aria-hidden="true">→</span>
+            </button>
+            <button id="shareGeneratedVideoButton" class="secondary-button share-video-button" type="button" hidden>Bagikan MP4 ke IG/TikTok</button>
+          </div>
+        </section>
+      </div>
+
+      <aside id="videoPreviewColumn" class="preview-column video-preview-column" aria-labelledby="video-preview-title">
+        <div class="preview-card video-preview-card">
+          <div class="preview-header">
+            <div>
+              <p class="preview-label">PREVIEW 9:16</p>
+              <h3 id="video-preview-title">Video quotes</h3>
+            </div>
+            <span id="previewResolutionChip" class="ratio-chip">1080 × 1920</span>
+          </div>
+
+          <div class="canvas-shell video-canvas-shell">
+            <div class="drag-hint" aria-hidden="true">↔ Tarik untuk memindahkan teks</div>
+            <canvas id="videoPreviewCanvas" width="540" height="960" title="Tarik untuk memindahkan quotes">Pratinjau video quotes 9:16.</canvas>
+            <div id="videoPreviewEmpty" class="preview-empty video-empty">
+              <span aria-hidden="true">▶</span>
+              <strong>Unggah video untuk mulai</strong>
+              <small>Quotes dan posisi dapat diatur sebelum ekspor.</small>
+            </div>
+          </div>
+
+          <div class="video-player-controls">
+            <button id="playPauseButton" class="round-control" type="button" aria-label="Putar video">▶</button>
+            <span id="currentTime">0:00</span>
+            <input id="seekBar" type="range" min="0" max="1000" value="0" aria-label="Posisi video" />
+            <span id="durationTime">0:00</span>
+            <button id="muteButton" class="round-control" type="button" aria-label="Aktifkan suara">🔇</button>
+          </div>
+
+          <div class="preview-footer">
+            <span>Rasio 9:16</span>
+            <span id="videoFormatChip" class="quality-chip">Mendeteksi format…</span>
+            <span id="previewVideoName">belum-ada-video</span>
+          </div>
+        </div>
+
+        <div class="tip-card video-tip">
+          <span class="tip-mark" aria-hidden="true">i</span>
+          <p><strong>realme 5 Pro: gunakan mode IG/TikTok MP4.</strong> Video disusun per frame pada 720p/24 fps konstan, lalu dikodekan sebagai MP4 H.264 + AAC agar lancar diputar dan terbaca sebagai video oleh Instagram/TikTok.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <nav class="mobile-video-dock" aria-label="Aksi cepat video">
+    <button id="mobilePreviewButton" class="mobile-dock-button" type="button"><span aria-hidden="true">▯</span> Preview</button>
+    <button id="mobileGenerateVideoButton" class="mobile-dock-button mobile-dock-primary" type="button" disabled><span aria-hidden="true">↓</span> Ekspor</button>
+    <button id="mobileShareVideoButton" class="mobile-dock-button mobile-dock-share" type="button" hidden><span aria-hidden="true">↗</span> Ke IG/TikTok</button>
+  </nav>
+
+  <dialog id="videoProgressDialog" class="progress-dialog">
+    <div class="progress-content">
+      <div class="progress-spinner" aria-hidden="true"></div>
+      <p class="preview-label">SEDANG MERENDER VIDEO</p>
+      <h2 id="videoProgressTitle">Menyiapkan video…</h2>
+      <p id="videoProgressDetail">Jangan tutup tab ini.</p>
+      <div class="progress-track" aria-hidden="true"><span id="videoProgressBar"></span></div>
+      <div class="progress-meta"><span id="videoProgressPercent">0%</span><span id="videoProgressTime">0:00 / 0:00</span></div>
+      <button id="cancelVideoGeneration" class="secondary-button" type="button">Batalkan</button>
+    </div>
+  </dialog>
+
+  <div id="videoToast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer><p>Semua video diproses lokal di browser. File tidak dikirim ke server. Ketersediaan lagu dapat berbeda menurut wilayah.</p></footer>
+</body>
+</html>

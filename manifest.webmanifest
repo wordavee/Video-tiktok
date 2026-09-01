@@ -1,0 +1,53 @@
+{
+  "name": "Caption Foto HD — Content Studio",
+  "short_name": "Caption Studio",
+  "description": "Buat foto batch, video quotes, dan video YouTube yang menyatu ke layar laptop langsung dari ponsel.",
+  "lang": "id-ID",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f5f6",
+  "theme_color": "#f4f5f6",
+  "icons": [
+    {
+      "src": "icons/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Video 9:16",
+      "short_name": "Video",
+      "url": "./video.html"
+    },
+    {
+      "name": "Foto batch",
+      "short_name": "Foto",
+      "url": "./index.html"
+    },
+    {
+      "name": "Template Tipe 3",
+      "short_name": "Tipe 3",
+      "url": "./tipe3.html"
+    },
+    {
+      "name": "Template Tipe 1",
+      "short_name": "Tipe 1",
+      "url": "./tipe1.html"
+    },
+    {
+      "name": "YouTube di Laptop",
+      "short_name": "Tipe 5",
+      "url": "./tipe5.html"
+    }
+  ]
+}
